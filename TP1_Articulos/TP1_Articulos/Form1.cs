@@ -36,17 +36,63 @@ namespace TP1_Articulos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
+            ArticuloDatos neg = new ArticuloDatos();
+            Articulos seleccionado;
+            seleccionado = (Articulos)dgvPrincipal.CurrentRow.DataBoundItem;
+            neg.eliminar(seleccionado.Id);
+            cargar();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<Articulos> listaDeArticulos = new List<Articulos>();
-            ArticuloDatos Negocio = new ArticuloDatos();
-            dgvPrincipal.DataSource = Negocio.Listar();
-            listaDeArticulos = Negocio.Listar();
-            dgvPrincipal.DataSource = listaDeArticulos;
+            cargar();
+        }
 
+        private void cargar()
+        {
+            try
+            {
+                List<Articulos> listaDeArticulos = new List<Articulos>();
+                ArticuloDatos Negocio = new ArticuloDatos();
+                dgvPrincipal.DataSource = Negocio.Listar();
+                listaDeArticulos = Negocio.Listar();
+                dgvPrincipal.DataSource = listaDeArticulos;
+                if (listaDeArticulos.Count > 0)
+                {
+                    cargarImagen(listaDeArticulos[0].ImagenUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxArticulos.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pbxArticulos.Load("https://ih1.redbubble.net/image.1693090018.7934/pp,504x498-pad,600x600,f8f8f8.jpg");
+            }
+        }
+
+        private void dgvPrincipal_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvPrincipal.CurrentRow != null)
+            {
+                Articulos seleccionado = (Articulos)dgvPrincipal.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.ImagenUrl);
+            }
         }
     }
 }
