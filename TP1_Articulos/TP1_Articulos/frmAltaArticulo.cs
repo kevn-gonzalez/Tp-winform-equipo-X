@@ -12,9 +12,18 @@ namespace TP1_Articulos
 {
     public partial class frmAltaArticulo : Form
     {
+
+        private Articulos articulo = null;
         public frmAltaArticulo()
         {
             InitializeComponent();
+        }
+
+        public frmAltaArticulo(Articulos articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+            Text = "Modificar Artículo";
         }
 
         private void frmAltaArticulo_Load(object sender, EventArgs e)
@@ -31,6 +40,18 @@ namespace TP1_Articulos
                 cboCategoria.DataSource = categoriaDatos.Listar();
                 cboCategoria.ValueMember = "Id";
                 cboCategoria.DisplayMember = "Descripcion";
+
+                if (articulo != null)
+                {
+                    txtCodigo.Text = articulo.Codigo;
+                    txtNombre.Text = articulo.Nombre;
+                    txtDescripcion.Text = articulo.Descripcion;
+                    txtPrecio.Text = articulo.Precio.ToString();
+                    txtImagenUrl.Text = articulo.ImagenUrl;
+
+                    cboMarca.SelectedValue = articulo.IdMarca.Id;
+                    cboCategoria.SelectedValue = articulo.IdCategoria.Id;
+                }
             }
             catch (Exception ex)
             {
@@ -40,22 +61,32 @@ namespace TP1_Articulos
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulos nuevo = new Articulos();
             ArticuloDatos datos = new ArticuloDatos();
 
             try
             {
-                nuevo.Codigo = txtCodigo.Text;
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Precio = decimal.Parse(txtPrecio.Text);
-                nuevo.ImagenUrl = txtImagenUrl.Text;
-                nuevo.IdMarca = (Marcas)cboMarca.SelectedItem;
-                nuevo.IdCategoria = (Categorias)cboCategoria.SelectedItem;
+                if (articulo == null)
+                    articulo = new Articulos();
 
-                datos.Agregar(nuevo);
+                articulo.Codigo = txtCodigo.Text;
+                articulo.Nombre = txtNombre.Text;
+                articulo.Descripcion = txtDescripcion.Text;
+                articulo.Precio = decimal.Parse(txtPrecio.Text);
+                articulo.ImagenUrl = txtImagenUrl.Text;
+                articulo.IdMarca = (Marcas)cboMarca.SelectedItem;
+                articulo.IdCategoria = (Categorias)cboCategoria.SelectedItem;
 
-                MessageBox.Show("Artículo agregado correctamente.");
+                if (articulo.Id != 0)
+                {
+                    datos.Modificar(articulo);
+                    MessageBox.Show("Artículo modificado correctamente.");
+                }
+                else
+                {
+                    datos.Agregar(articulo);
+                    MessageBox.Show("Artículo agregado correctamente.");
+                }
+
                 Close();
             }
             catch (Exception ex)

@@ -94,5 +94,17 @@ namespace TP1_Articulos
                 cargarImagen(seleccionado.ImagenUrl);
             }
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulos seleccionado;
+
+            seleccionado = (Articulos)dgvPrincipal.CurrentRow.DataBoundItem;
+
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            modificar.ShowDialog();
+
+            cargar();
+        }
     }
 }
