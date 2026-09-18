@@ -44,6 +44,9 @@
             btnCancelar = new Button();
             cboMarca = new ComboBox();
             cboCategoria = new ComboBox();
+            btnAgregarImagen = new Button();
+            lstImagenes = new ListBox();
+            btnQuitarImagen = new Button();
             SuspendLayout();
             // 
             // label1
@@ -147,7 +150,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(73, 351);
+            btnAceptar.Location = new Point(47, 624);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(75, 23);
             btnAceptar.TabIndex = 14;
@@ -157,7 +160,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(229, 351);
+            btnCancelar.Location = new Point(229, 624);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 15;
@@ -180,11 +183,42 @@
             cboCategoria.Size = new Size(169, 23);
             cboCategoria.TabIndex = 17;
             // 
+            // btnAgregarImagen
+            // 
+            btnAgregarImagen.Location = new Point(328, 285);
+            btnAgregarImagen.Name = "btnAgregarImagen";
+            btnAgregarImagen.Size = new Size(106, 23);
+            btnAgregarImagen.TabIndex = 18;
+            btnAgregarImagen.Text = "Agregar Imagen";
+            btnAgregarImagen.UseVisualStyleBackColor = true;
+            btnAgregarImagen.Click += btnAgregarImagen_Click;
+            // 
+            // lstImagenes
+            // 
+            lstImagenes.FormattingEnabled = true;
+            lstImagenes.Location = new Point(47, 319);
+            lstImagenes.Name = "lstImagenes";
+            lstImagenes.Size = new Size(257, 244);
+            lstImagenes.TabIndex = 19;
+            // 
+            // btnQuitarImagen
+            // 
+            btnQuitarImagen.Location = new Point(47, 569);
+            btnQuitarImagen.Name = "btnQuitarImagen";
+            btnQuitarImagen.Size = new Size(94, 23);
+            btnQuitarImagen.TabIndex = 20;
+            btnQuitarImagen.Text = "Quitar Imagen";
+            btnQuitarImagen.UseVisualStyleBackColor = true;
+            btnQuitarImagen.Click += btnQuitarImagen_Click;
+            // 
             // frmAltaArticulo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 757);
+            Controls.Add(btnQuitarImagen);
+            Controls.Add(lstImagenes);
+            Controls.Add(btnAgregarImagen);
             Controls.Add(cboCategoria);
             Controls.Add(cboMarca);
             Controls.Add(btnCancelar);
@@ -226,5 +260,8 @@
         private Button btnCancelar;
         private ComboBox cboMarca;
         private ComboBox cboCategoria;
+        private Button btnAgregarImagen;
+        private ListBox lstImagenes;
+        private Button btnQuitarImagen;
     }
 }

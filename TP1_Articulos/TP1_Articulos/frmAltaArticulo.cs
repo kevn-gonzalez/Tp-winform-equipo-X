@@ -47,8 +47,11 @@ namespace TP1_Articulos
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
                     txtPrecio.Text = articulo.Precio.ToString();
-                    txtImagenUrl.Text = articulo.ImagenUrl;
-
+                    articulo.Imagenes = new ArticuloDatos().ListarImagenes(articulo.Id);
+                    foreach (string imagen in articulo.Imagenes)
+                    {
+                        lstImagenes.Items.Add(imagen);
+                    }
                     cboMarca.SelectedValue = articulo.IdMarca.Id;
                     cboCategoria.SelectedValue = articulo.IdCategoria.Id;
                 }
@@ -72,7 +75,15 @@ namespace TP1_Articulos
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
-                articulo.ImagenUrl = txtImagenUrl.Text;
+                articulo.Imagenes.Clear();
+                foreach (string imagen in lstImagenes.Items)
+                {
+                    articulo.Imagenes.Add(imagen);
+                }
+
+                if (articulo.Imagenes.Count > 0)
+                    articulo.ImagenUrl = articulo.Imagenes[0];
+
                 articulo.IdMarca = (Marcas)cboMarca.SelectedItem;
                 articulo.IdCategoria = (Categorias)cboCategoria.SelectedItem;
 
@@ -93,6 +104,21 @@ namespace TP1_Articulos
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            if (txtImagenUrl.Text != "")
+            {
+                lstImagenes.Items.Add(txtImagenUrl.Text);
+                txtImagenUrl.Clear();
+            }
+        }
+
+        private void btnQuitarImagen_Click(object sender, EventArgs e)
+        {
+            if (lstImagenes.SelectedItem != null)
+                lstImagenes.Items.Remove(lstImagenes.SelectedItem);
         }
     }
 }

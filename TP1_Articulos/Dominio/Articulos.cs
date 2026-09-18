@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace Dominio
 {
@@ -15,6 +16,7 @@ namespace Dominio
             public decimal Precio { get; set; }
             public string ImagenUrl { get; set; }
             [DisplayName("Marca")]
+            public List<string> Imagenes { get; set; } = new List<string>();
             public Marcas IdMarca { get; set; } = new Marcas();
             [DisplayName("Categoria")]
             public Categorias IdCategoria { get; set; } = new Categorias();

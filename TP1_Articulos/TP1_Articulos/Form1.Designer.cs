@@ -33,6 +33,8 @@
             btnEliminar = new Button();
             pbxArticulos = new PictureBox();
             btnModificar = new Button();
+            btnAnteriorImagen = new Button();
+            btnSiguienteImagen = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxArticulos).BeginInit();
             SuspendLayout();
@@ -88,11 +90,33 @@
             btnModificar.UseVisualStyleBackColor = true;
             btnModificar.Click += btnModificar_Click;
             // 
+            // btnAnteriorImagen
+            // 
+            btnAnteriorImagen.Location = new Point(113, 321);
+            btnAnteriorImagen.Name = "btnAnteriorImagen";
+            btnAnteriorImagen.Size = new Size(34, 23);
+            btnAnteriorImagen.TabIndex = 5;
+            btnAnteriorImagen.Text = "<";
+            btnAnteriorImagen.UseVisualStyleBackColor = true;
+            btnAnteriorImagen.Click += btnAnteriorImagen_Click;
+            // 
+            // btnSiguienteImagen
+            // 
+            btnSiguienteImagen.Location = new Point(164, 321);
+            btnSiguienteImagen.Name = "btnSiguienteImagen";
+            btnSiguienteImagen.Size = new Size(34, 23);
+            btnSiguienteImagen.TabIndex = 6;
+            btnSiguienteImagen.Text = ">";
+            btnSiguienteImagen.UseVisualStyleBackColor = true;
+            btnSiguienteImagen.Click += btnSiguienteImagen_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSiguienteImagen);
+            Controls.Add(btnAnteriorImagen);
             Controls.Add(btnModificar);
             Controls.Add(pbxArticulos);
             Controls.Add(btnEliminar);
@@ -113,5 +137,7 @@
         private Button btnEliminar;
         private PictureBox pbxArticulos;
         private Button btnModificar;
+        private Button btnAnteriorImagen;
+        private Button btnSiguienteImagen;
     }
 }

@@ -15,6 +15,9 @@ namespace TP1_Articulos
 {
     public partial class Form1 : Form
     {
+        private List<string> imagenesActuales = new List<string>();
+        private int indiceImagen = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -54,9 +57,13 @@ namespace TP1_Articulos
             {
                 List<Articulos> listaDeArticulos = new List<Articulos>();
                 ArticuloDatos Negocio = new ArticuloDatos();
+
                 dgvPrincipal.DataSource = Negocio.Listar();
                 listaDeArticulos = Negocio.Listar();
                 dgvPrincipal.DataSource = listaDeArticulos;
+
+                dgvPrincipal.Columns["Precio"].DefaultCellStyle.Format = "0.##";
+
                 if (listaDeArticulos.Count > 0)
                 {
                     cargarImagen(listaDeArticulos[0].ImagenUrl);
@@ -66,7 +73,6 @@ namespace TP1_Articulos
             {
                 MessageBox.Show(ex.ToString());
             }
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -91,8 +97,23 @@ namespace TP1_Articulos
             if (dgvPrincipal.CurrentRow != null)
             {
                 Articulos seleccionado = (Articulos)dgvPrincipal.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.ImagenUrl);
+                ArticuloDatos datos = new ArticuloDatos();
+
+                imagenesActuales = datos.ListarImagenes(seleccionado.Id);
+                indiceImagen = 0;
+
+                if (imagenesActuales.Count > 0)
+                    cargarImagen(imagenesActuales[indiceImagen]);
+                else
+                    pbxArticulos.Image = null;
+
+                actualizarBotonesImagen();
             }
+        }
+        private void actualizarBotonesImagen()
+        {
+            btnAnteriorImagen.Enabled = imagenesActuales.Count > 1;
+            btnSiguienteImagen.Enabled = imagenesActuales.Count > 1;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -105,6 +126,32 @@ namespace TP1_Articulos
             modificar.ShowDialog();
 
             cargar();
+        }
+
+        private void btnAnteriorImagen_Click(object sender, EventArgs e)
+        {
+            if (imagenesActuales.Count > 0)
+            {
+                indiceImagen--;
+
+                if (indiceImagen < 0)
+                    indiceImagen = imagenesActuales.Count - 1;
+
+                cargarImagen(imagenesActuales[indiceImagen]);
+            }
+        }
+
+        private void btnSiguienteImagen_Click(object sender, EventArgs e)
+        {
+            if (imagenesActuales.Count > 0)
+            {
+                indiceImagen++;
+
+                if (indiceImagen >= imagenesActuales.Count)
+                    indiceImagen = 0;
+
+                cargarImagen(imagenesActuales[indiceImagen]);
+            }
         }
     }
 }

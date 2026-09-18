@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Select a.Id, a.Codigo, a.Nombre, a.Descripcion , a.Precio, i.ImagenUrl, m.Descripcion as desmar, m.Id as idMar, c.Descripcion as descat, c.Id as idCat From ARTICULOS a  LEFT JOIN IMAGENES i on i.IdArticulo = a.Id LEFT JOIN MARCAS m on m.Id = a.IdMarca LEFT JOIN CATEGORIAS c on c.Id = a.IdCategoria");
+                datos.setearConsulta("Select a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, (Select Top 1 i.ImagenUrl From IMAGENES i Where i.IdArticulo = a.Id Order By i.Id) as ImagenUrl, m.Descripcion as desmar, m.Id as idMar, c.Descripcion as descat, c.Id as idCat From ARTICULOS a LEFT JOIN MARCAS m on m.Id = a.IdMarca LEFT JOIN CATEGORIAS c on c.Id = a.IdCategoria");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -60,6 +60,34 @@ namespace Negocio
             }
         }
 
+        public List<string> ListarImagenes(int idArticulo)
+        {
+            List<string> lista = new List<string>();
+            AccesoADatos datos = new AccesoADatos();
+
+            try
+            {
+                datos.setearConsulta("Select ImagenUrl From IMAGENES Where IdArticulo = @IdArticulo");
+                datos.setearParametro("@IdArticulo", idArticulo);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    lista.Add((string)datos.Lector["ImagenUrl"]);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
 
 
         public void Agregar(Articulos nuevo)
@@ -69,24 +97,27 @@ namespace Negocio
             try
             {
                 datos.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) values (@Codigo, @Nombre, @Descripcion, @Precio, @IdMarca, @IdCategoria); SELECT SCOPE_IDENTITY()");
+
                 datos.setearParametro("@Codigo", nuevo.Codigo);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Precio", nuevo.Precio);
-                datos.setearParametro("@IdCategoria", nuevo.IdCategoria.Id);
                 datos.setearParametro("@IdMarca", nuevo.IdMarca.Id);
+                datos.setearParametro("@IdCategoria", nuevo.IdCategoria.Id);
 
                 int idValor = datos.EjecutarEcalar();
 
-                datos.setearConsulta("insert into IMAGENES (IdArticulo, ImagenUrl)values(@IdArticulo, @ImagenUrl)");
-                datos.setearParametro("@IdArticulo", idValor);
-                datos.setearParametro("@ImagenUrl", nuevo.ImagenUrl);
+                foreach (string imagen in nuevo.Imagenes)
+                {
+                    datos.setearConsulta("insert into IMAGENES (IdArticulo, ImagenUrl) values (@IdArticulo, @ImagenUrl)");
+                    datos.setearParametro("@IdArticulo", idValor);
+                    datos.setearParametro("@ImagenUrl", imagen);
 
-                datos.ejecutarAccion();
+                    datos.ejecutarAccion();
+                }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -129,6 +160,19 @@ namespace Negocio
                 datos.setearParametro("@Id", articulo.Id);
 
                 datos.ejecutarAccion();
+
+                datos.setearConsulta("delete from IMAGENES where IdArticulo = @IdArticulo");
+                datos.setearParametro("@IdArticulo", articulo.Id);
+                datos.ejecutarAccion();
+
+                foreach (string imagen in articulo.Imagenes)
+                {
+                    datos.setearConsulta("insert into IMAGENES (IdArticulo, ImagenUrl) values (@IdArticulo, @ImagenUrl)");
+                    datos.setearParametro("@IdArticulo", articulo.Id);
+                    datos.setearParametro("@ImagenUrl", imagen);
+
+                    datos.ejecutarAccion();
+                }
             }
             catch (Exception ex)
             {
