@@ -17,6 +17,7 @@ namespace TP1_Articulos
     {
         private List<string> imagenesActuales = new List<string>();
         private int indiceImagen = 0;
+        private List<Articulos> listaDeArticulos;
 
         public Form1()
         {
@@ -41,13 +42,30 @@ namespace TP1_Articulos
         {
             ArticuloDatos neg = new ArticuloDatos();
             Articulos seleccionado;
-            seleccionado = (Articulos)dgvPrincipal.CurrentRow.DataBoundItem;
-            neg.eliminar(seleccionado.Id);
-            cargar();
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Esta a punto de eliminar un articulo. ¿Esta seguro?", "Eliminando articulo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Articulos)dgvPrincipal.CurrentRow.DataBoundItem;
+                    neg.eliminar(seleccionado.Id);
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cbBuscar.Items.Add("todos");
+            cbBuscar.Items.Add("por nombre");
+            cbBuscar.Items.Add("por descripcion");
+            cbBuscar.Items.Add("por marca");
+            cbBuscar.Items.Add("por categoria");
+            cbBuscar.SelectedIndex = 0;
             cargar();
         }
 
@@ -55,17 +73,16 @@ namespace TP1_Articulos
         {
             try
             {
-                List<Articulos> listaDeArticulos = new List<Articulos>();
                 ArticuloDatos Negocio = new ArticuloDatos();
 
-                dgvPrincipal.DataSource = Negocio.Listar();
                 listaDeArticulos = Negocio.Listar();
                 dgvPrincipal.DataSource = listaDeArticulos;
 
-                dgvPrincipal.Columns["Precio"].DefaultCellStyle.Format = "0.##";
+                dgvPrincipal.Columns["Precio"].DefaultCellStyle.Format = "N2";
 
                 if (listaDeArticulos.Count > 0)
                 {
+                    ocultar();
                     cargarImagen(listaDeArticulos[0].ImagenUrl);
                 }
             }
@@ -75,10 +92,6 @@ namespace TP1_Articulos
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void cargarImagen(string imagen)
         {
@@ -152,6 +165,79 @@ namespace TP1_Articulos
 
                 cargarImagen(imagenesActuales[indiceImagen]);
             }
+        }
+
+
+        private void tbBuscar_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulos> listaParcial;
+
+            string filtro = tbBuscar.Text;
+            if (filtro.Length > 1)
+            {
+
+                string seleccion = cbBuscar.SelectedItem.ToString();
+                switch (seleccion)
+                {
+                    case "por nombre":
+                        {
+                            listaParcial = listaDeArticulos.FindAll(item => item.Nombre.ToUpper().Contains(filtro.ToUpper()));
+                            break;
+                        }
+                    case "por descripcion":
+                        {
+                            listaParcial = listaDeArticulos.FindAll(item => item.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+                            break;
+                        }
+                    case "por marca":
+                        {
+                            listaParcial = listaDeArticulos.FindAll(item => item.IdMarca != null && item.IdMarca.Descripcion != null && item.IdMarca.Descripcion.ToUpper().Contains(filtro.ToUpper())); break;
+                        }
+                    case "por categoria":
+                        {
+                            listaParcial = listaDeArticulos.FindAll(item => item.IdCategoria != null && item.IdCategoria.Descripcion != null && item.IdCategoria.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+                            break;
+                        }
+                    default:
+                        listaParcial = listaDeArticulos.FindAll(item => item.Nombre.ToUpper().Contains(filtro.ToUpper()) || item.Descripcion.ToUpper().Contains(filtro.ToUpper()) || (item.IdCategoria != null && item.IdCategoria.Descripcion != null && item.IdCategoria.Descripcion.ToUpper().Contains(filtro.ToUpper())) || (item.IdMarca != null && item.IdMarca.Descripcion != null && item.IdMarca.Descripcion.ToUpper().Contains(filtro.ToUpper())));
+                        break;
+                }
+            }
+            else
+            {
+                listaParcial = listaDeArticulos;
+            }
+
+            dgvPrincipal.DataSource = null;
+            dgvPrincipal.DataSource = listaParcial;
+            ocultar();
+        }
+
+        private void ocultar()
+        {
+            dgvPrincipal.Columns["ImagenUrl"].Visible = false;
+            dgvPrincipal.Columns["Id"].Visible = false;
+        }
+
+        private void dgvPrincipal_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CBBuscarpor_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

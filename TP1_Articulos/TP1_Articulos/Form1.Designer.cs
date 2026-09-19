@@ -35,6 +35,10 @@
             btnModificar = new Button();
             btnAnteriorImagen = new Button();
             btnSiguienteImagen = new Button();
+            cbBuscar = new ComboBox();
+            labelFiltrar = new Label();
+            tbBuscar = new TextBox();
+            labelBuscar = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxArticulos).BeginInit();
             SuspendLayout();
@@ -45,14 +49,15 @@
             dgvPrincipal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPrincipal.Location = new Point(333, 12);
             dgvPrincipal.Name = "dgvPrincipal";
-            dgvPrincipal.Size = new Size(455, 346);
+            dgvPrincipal.Size = new Size(455, 288);
             dgvPrincipal.TabIndex = 0;
             dgvPrincipal.CellContentClick += dgvPrincipal_CellContentClick;
+            dgvPrincipal.DataError += dgvPrincipal_DataError;
             dgvPrincipal.SelectionChanged += dgvPrincipal_SelectionChanged;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(12, 46);
+            btnAgregar.Location = new Point(12, 24);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(85, 23);
             btnAgregar.TabIndex = 1;
@@ -62,7 +67,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(113, 46);
+            btnEliminar.Location = new Point(113, 24);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(85, 23);
             btnEliminar.TabIndex = 2;
@@ -72,7 +77,7 @@
             // 
             // pbxArticulos
             // 
-            pbxArticulos.Location = new Point(57, 126);
+            pbxArticulos.Location = new Point(58, 72);
             pbxArticulos.Name = "pbxArticulos";
             pbxArticulos.Size = new Size(206, 189);
             pbxArticulos.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -82,7 +87,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(215, 46);
+            btnModificar.Location = new Point(215, 24);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(85, 23);
             btnModificar.TabIndex = 4;
@@ -92,7 +97,7 @@
             // 
             // btnAnteriorImagen
             // 
-            btnAnteriorImagen.Location = new Point(113, 321);
+            btnAnteriorImagen.Location = new Point(113, 277);
             btnAnteriorImagen.Name = "btnAnteriorImagen";
             btnAnteriorImagen.Size = new Size(34, 23);
             btnAnteriorImagen.TabIndex = 5;
@@ -102,7 +107,7 @@
             // 
             // btnSiguienteImagen
             // 
-            btnSiguienteImagen.Location = new Point(164, 321);
+            btnSiguienteImagen.Location = new Point(164, 277);
             btnSiguienteImagen.Name = "btnSiguienteImagen";
             btnSiguienteImagen.Size = new Size(34, 23);
             btnSiguienteImagen.TabIndex = 6;
@@ -110,11 +115,51 @@
             btnSiguienteImagen.UseVisualStyleBackColor = true;
             btnSiguienteImagen.Click += btnSiguienteImagen_Click;
             // 
+            // cbBuscar
+            // 
+            cbBuscar.FormattingEnabled = true;
+            cbBuscar.Location = new Point(409, 318);
+            cbBuscar.Name = "cbBuscar";
+            cbBuscar.Size = new Size(194, 23);
+            cbBuscar.TabIndex = 7;
+            cbBuscar.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cbBuscar.TextChanged += CBBuscarpor_TextChanged;
+            // 
+            // labelFiltrar
+            // 
+            labelFiltrar.AutoSize = true;
+            labelFiltrar.Location = new Point(333, 321);
+            labelFiltrar.Name = "labelFiltrar";
+            labelFiltrar.Size = new Size(61, 15);
+            labelFiltrar.TabIndex = 8;
+            labelFiltrar.Text = "Filtrar por:";
+            // 
+            // tbBuscar
+            // 
+            tbBuscar.Location = new Point(409, 357);
+            tbBuscar.Name = "tbBuscar";
+            tbBuscar.Size = new Size(286, 23);
+            tbBuscar.TabIndex = 9;
+            tbBuscar.TextChanged += tbBuscar_TextChanged;
+            // 
+            // labelBuscar
+            // 
+            labelBuscar.AutoSize = true;
+            labelBuscar.Location = new Point(333, 360);
+            labelBuscar.Name = "labelBuscar";
+            labelBuscar.Size = new Size(45, 15);
+            labelBuscar.TabIndex = 10;
+            labelBuscar.Text = "Buscar:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelBuscar);
+            Controls.Add(tbBuscar);
+            Controls.Add(labelFiltrar);
+            Controls.Add(cbBuscar);
             Controls.Add(btnSiguienteImagen);
             Controls.Add(btnAnteriorImagen);
             Controls.Add(btnModificar);
@@ -128,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvPrincipal).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbxArticulos).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -139,5 +185,9 @@
         private Button btnModificar;
         private Button btnAnteriorImagen;
         private Button btnSiguienteImagen;
+        private ComboBox cbBuscar;
+        private Label labelFiltrar;
+        private TextBox tbBuscar;
+        private Label labelBuscar;
     }
 }
