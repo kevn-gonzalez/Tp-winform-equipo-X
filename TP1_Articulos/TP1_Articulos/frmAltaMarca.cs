@@ -25,6 +25,7 @@ namespace TP1_Articulos
             this.marca = marca;
             Text = "Modificar Marca";
             btnAgregarMarca.Text = "Modificar";
+            txtAltaMarca.Text = marca.Descripcion;
         }
 
         private void btnAgregarMarca_Click(object sender, EventArgs e)

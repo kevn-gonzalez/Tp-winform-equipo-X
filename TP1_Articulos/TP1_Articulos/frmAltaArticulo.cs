@@ -68,15 +68,32 @@ namespace TP1_Articulos
 
             try
             {
+                if (string.IsNullOrWhiteSpace(txtCodigo.Text))
+                {
+                    MessageBox.Show("Debe ingresar un código.");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtNombre.Text))
+                {
+                    MessageBox.Show("Debe ingresar un nombre.");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+                {
+                    MessageBox.Show("Debe ingresar una descripción.");
+                    return;
+                }
                 if (articulo == null)
                     articulo = new Articulos();
 
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-                if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
+                if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
                 {
-                    MessageBox.Show("Precio invalido. Por favor, utilice solo números en dicho campo.");
+                    MessageBox.Show("Precio invalido. Por favor, utilice solo números y mayores a 0");
                     return;
                 }
                 articulo.Precio = precio;
@@ -134,6 +151,11 @@ namespace TP1_Articulos
         private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

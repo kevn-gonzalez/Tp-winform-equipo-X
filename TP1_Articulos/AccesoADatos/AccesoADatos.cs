@@ -20,7 +20,8 @@ namespace Negocio
 
         public AccesoADatos()
         {
-            conexion = new SqlConnection("Server=localhost,1433;User Id=sa;Password=Pirulo123;Database=CATALOGO_P3_DB;TrustServerCertificate=True;");
+            //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P4_DB; integrated security=true; TrustServerCertificate=True");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true; TrustServerCertificate=True");
             comando = new SqlCommand();
         }
 
