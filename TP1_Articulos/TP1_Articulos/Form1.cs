@@ -104,7 +104,7 @@ namespace TP1_Articulos
             {
                 pbxArticulos.Load(imagen);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 pbxArticulos.Load("https://ih1.redbubble.net/image.1693090018.7934/pp,504x498-pad,600x600,f8f8f8.jpg");
             }
