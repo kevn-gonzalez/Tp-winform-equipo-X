@@ -74,7 +74,12 @@ namespace TP1_Articulos
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-                articulo.Precio = decimal.Parse(txtPrecio.Text);
+                if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
+                {
+                    MessageBox.Show("Precio invalido. Por favor, utilice solo números en dicho campo.");
+                    return;
+                }
+                articulo.Precio = precio;
                 articulo.Imagenes.Clear();
                 foreach (string imagen in lstImagenes.Items)
                 {
@@ -84,6 +89,11 @@ namespace TP1_Articulos
                 if (articulo.Imagenes.Count > 0)
                     articulo.ImagenUrl = articulo.Imagenes[0];
 
+                if (cboMarca.SelectedItem == null || cboCategoria.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar una Marca y una Categoría.");
+                    return;
+                }
                 articulo.IdMarca = (Marcas)cboMarca.SelectedItem;
                 articulo.IdCategoria = (Categorias)cboCategoria.SelectedItem;
 
@@ -119,6 +129,11 @@ namespace TP1_Articulos
         {
             if (lstImagenes.SelectedItem != null)
                 lstImagenes.Items.Remove(lstImagenes.SelectedItem);
+        }
+
+        private void lstImagenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

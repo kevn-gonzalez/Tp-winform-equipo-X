@@ -107,7 +107,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(47, 288);
+            label7.Location = new Point(351, 47);
             label7.Name = "label7";
             label7.Size = new Size(74, 15);
             label7.TabIndex = 6;
@@ -143,14 +143,14 @@
             // 
             // txtImagenUrl
             // 
-            txtImagenUrl.Location = new Point(135, 285);
+            txtImagenUrl.Location = new Point(439, 44);
             txtImagenUrl.Name = "txtImagenUrl";
-            txtImagenUrl.Size = new Size(169, 23);
+            txtImagenUrl.Size = new Size(134, 23);
             txtImagenUrl.TabIndex = 13;
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(47, 624);
+            btnAceptar.Location = new Point(47, 311);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(75, 23);
             btnAceptar.TabIndex = 14;
@@ -160,7 +160,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(229, 624);
+            btnCancelar.Location = new Point(135, 311);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 15;
@@ -185,7 +185,7 @@
             // 
             // btnAgregarImagen
             // 
-            btnAgregarImagen.Location = new Point(328, 285);
+            btnAgregarImagen.Location = new Point(327, 311);
             btnAgregarImagen.Name = "btnAgregarImagen";
             btnAgregarImagen.Size = new Size(106, 23);
             btnAgregarImagen.TabIndex = 18;
@@ -196,14 +196,15 @@
             // lstImagenes
             // 
             lstImagenes.FormattingEnabled = true;
-            lstImagenes.Location = new Point(47, 319);
+            lstImagenes.Location = new Point(351, 89);
             lstImagenes.Name = "lstImagenes";
-            lstImagenes.Size = new Size(257, 244);
+            lstImagenes.Size = new Size(222, 199);
             lstImagenes.TabIndex = 19;
+            lstImagenes.SelectedIndexChanged += lstImagenes_SelectedIndexChanged;
             // 
             // btnQuitarImagen
             // 
-            btnQuitarImagen.Location = new Point(47, 569);
+            btnQuitarImagen.Location = new Point(455, 311);
             btnQuitarImagen.Name = "btnQuitarImagen";
             btnQuitarImagen.Size = new Size(94, 23);
             btnQuitarImagen.TabIndex = 20;
@@ -215,7 +216,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 757);
+            ClientSize = new Size(623, 371);
             Controls.Add(btnQuitarImagen);
             Controls.Add(lstImagenes);
             Controls.Add(btnAgregarImagen);

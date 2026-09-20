@@ -47,9 +47,9 @@
             // 
             dgvPrincipal.BackgroundColor = SystemColors.ButtonHighlight;
             dgvPrincipal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPrincipal.Location = new Point(333, 12);
+            dgvPrincipal.Location = new Point(259, 12);
             dgvPrincipal.Name = "dgvPrincipal";
-            dgvPrincipal.Size = new Size(455, 288);
+            dgvPrincipal.Size = new Size(529, 328);
             dgvPrincipal.TabIndex = 0;
             dgvPrincipal.CellContentClick += dgvPrincipal_CellContentClick;
             dgvPrincipal.DataError += dgvPrincipal_DataError;
@@ -57,7 +57,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(12, 24);
+            btnAgregar.Location = new Point(22, 21);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(85, 23);
             btnAgregar.TabIndex = 1;
@@ -67,7 +67,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(113, 24);
+            btnEliminar.Location = new Point(22, 97);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(85, 23);
             btnEliminar.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             // pbxArticulos
             // 
-            pbxArticulos.Location = new Point(58, 72);
+            pbxArticulos.Location = new Point(22, 151);
             pbxArticulos.Name = "pbxArticulos";
             pbxArticulos.Size = new Size(206, 189);
             pbxArticulos.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -87,7 +87,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(215, 24);
+            btnModificar.Location = new Point(22, 59);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(85, 23);
             btnModificar.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             // btnAnteriorImagen
             // 
-            btnAnteriorImagen.Location = new Point(113, 277);
+            btnAnteriorImagen.Location = new Point(73, 360);
             btnAnteriorImagen.Name = "btnAnteriorImagen";
             btnAnteriorImagen.Size = new Size(34, 23);
             btnAnteriorImagen.TabIndex = 5;
@@ -107,7 +107,7 @@
             // 
             // btnSiguienteImagen
             // 
-            btnSiguienteImagen.Location = new Point(164, 277);
+            btnSiguienteImagen.Location = new Point(124, 360);
             btnSiguienteImagen.Name = "btnSiguienteImagen";
             btnSiguienteImagen.Size = new Size(34, 23);
             btnSiguienteImagen.TabIndex = 6;
@@ -118,7 +118,7 @@
             // cbBuscar
             // 
             cbBuscar.FormattingEnabled = true;
-            cbBuscar.Location = new Point(409, 318);
+            cbBuscar.Location = new Point(328, 352);
             cbBuscar.Name = "cbBuscar";
             cbBuscar.Size = new Size(194, 23);
             cbBuscar.TabIndex = 7;
@@ -128,15 +128,16 @@
             // labelFiltrar
             // 
             labelFiltrar.AutoSize = true;
-            labelFiltrar.Location = new Point(333, 321);
+            labelFiltrar.Location = new Point(261, 355);
             labelFiltrar.Name = "labelFiltrar";
             labelFiltrar.Size = new Size(61, 15);
             labelFiltrar.TabIndex = 8;
             labelFiltrar.Text = "Filtrar por:";
+            labelFiltrar.Click += labelFiltrar_Click;
             // 
             // tbBuscar
             // 
-            tbBuscar.Location = new Point(409, 357);
+            tbBuscar.Location = new Point(328, 391);
             tbBuscar.Name = "tbBuscar";
             tbBuscar.Size = new Size(286, 23);
             tbBuscar.TabIndex = 9;
@@ -145,7 +146,7 @@
             // labelBuscar
             // 
             labelBuscar.AutoSize = true;
-            labelBuscar.Location = new Point(333, 360);
+            labelBuscar.Location = new Point(261, 391);
             labelBuscar.Name = "labelBuscar";
             labelBuscar.Size = new Size(45, 15);
             labelBuscar.TabIndex = 10;

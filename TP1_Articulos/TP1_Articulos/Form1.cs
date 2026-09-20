@@ -44,6 +44,11 @@ namespace TP1_Articulos
             Articulos seleccionado;
             try
             {
+                if (dgvPrincipal.CurrentRow == null)
+                {
+                    MessageBox.Show("Seleccione un artículo de la lista.");
+                    return;
+                }
                 DialogResult respuesta = MessageBox.Show("Esta a punto de eliminar un articulo. ¿Esta seguro?", "Eliminando articulo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (respuesta == DialogResult.Yes)
                 {
@@ -215,8 +220,14 @@ namespace TP1_Articulos
 
         private void ocultar()
         {
-            dgvPrincipal.Columns["ImagenUrl"].Visible = false;
-            dgvPrincipal.Columns["Id"].Visible = false;
+            if (dgvPrincipal.Columns.Contains("ImagenUrl"))
+            {
+                dgvPrincipal.Columns["ImagenUrl"].Visible = false;
+            }
+            if (dgvPrincipal.Columns.Contains("Id"))
+            {
+                dgvPrincipal.Columns["Id"].Visible = false;
+            }
         }
 
         private void dgvPrincipal_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -236,6 +247,11 @@ namespace TP1_Articulos
         }
 
         private void CBBuscarpor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelFiltrar_Click(object sender, EventArgs e)
         {
 
         }
