@@ -33,6 +33,13 @@ namespace TP1_Articulos
 
             try
             {
+                errorProvider1.Clear();
+                if (string.IsNullOrWhiteSpace(txtAltaCat.Text))
+                {
+                    errorProvider1.SetError(txtAltaCat, "Debe ingresar una categoría.");
+                    return;
+                }
+
                 if (categoria == null)
                 {
                     categoria = new Categorias();

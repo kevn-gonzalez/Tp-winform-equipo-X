@@ -68,34 +68,55 @@ namespace TP1_Articulos
 
             try
             {
+                errorProvider1.Clear();
+                bool hayError = false;
+
                 if (string.IsNullOrWhiteSpace(txtCodigo.Text))
                 {
-                    MessageBox.Show("Debe ingresar un código.");
-                    return;
+                    errorProvider1.SetError(txtCodigo, "Debe ingresar un código.");
+                    hayError= true;
                 }
 
                 if (string.IsNullOrWhiteSpace(txtNombre.Text))
                 {
-                    MessageBox.Show("Debe ingresar un nombre.");
-                    return;
+                    errorProvider1.SetError(txtNombre, "Debe ingresar un nombre.");
+                    hayError = true;
                 }
 
                 if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
                 {
-                    MessageBox.Show("Debe ingresar una descripción.");
-                    return;
+                    errorProvider1.SetError(txtDescripcion, "Debe ingresar una descripción.");
+                    hayError = true;
                 }
+                if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
+                {
+                    errorProvider1.SetError(txtPrecio, "Precio invalido. Por favor, utilice solo números y mayores a 0");
+                    hayError = true;
+                }
+
+                if (cboMarca.SelectedItem == null)
+                {
+                    errorProvider1.SetError(cboMarca, "Debe seleccionar una Marca.");
+                    hayError = true;
+                }
+                if (cboCategoria.SelectedItem == null)
+                {
+                    errorProvider1.SetError(cboCategoria, "Debe seleccionar una Categoría.");
+                    hayError = true;
+                }
+                if (lstImagenes.Items.Count == 0)
+                {
+                    errorProvider1.SetError(lstImagenes, "Debe agregar al menos una imagern.");
+                    hayError = true;
+                }
+                if (hayError) return;
+
                 if (articulo == null)
                     articulo = new Articulos();
 
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-                if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
-                {
-                    MessageBox.Show("Precio invalido. Por favor, utilice solo números y mayores a 0");
-                    return;
-                }
                 articulo.Precio = precio;
                 articulo.Imagenes.Clear();
                 foreach (string imagen in lstImagenes.Items)
@@ -103,14 +124,7 @@ namespace TP1_Articulos
                     articulo.Imagenes.Add(imagen);
                 }
 
-                if (articulo.Imagenes.Count > 0)
-                    articulo.ImagenUrl = articulo.Imagenes[0];
-
-                if (cboMarca.SelectedItem == null || cboCategoria.SelectedItem == null)
-                {
-                    MessageBox.Show("Debe seleccionar una Marca y una Categoría.");
-                    return;
-                }
+                articulo.ImagenUrl = articulo.Imagenes[0];
                 articulo.IdMarca = (Marcas)cboMarca.SelectedItem;
                 articulo.IdCategoria = (Categorias)cboCategoria.SelectedItem;
 

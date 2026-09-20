@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             dgvCategoria = new DataGridView();
             lblCategorias = new Label();
             btnAgregarCat = new Button();
             btnModificarCat = new Button();
             btnEliminarCat = new Button();
-           
-            
-            
+            errorProvider1 = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)dgvCategoria).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // dgvCategoria
@@ -52,7 +52,7 @@
             lblCategorias.AutoSize = true;
             lblCategorias.Location = new Point(141, 47);
             lblCategorias.Name = "lblCategorias";
-            lblCategorias.Size = new Size(78, 15);
+            lblCategorias.Size = new Size(79, 15);
             lblCategorias.TabIndex = 1;
             lblCategorias.Text = "CATEGORIAS:";
             // 
@@ -86,6 +86,11 @@
             btnEliminarCat.UseVisualStyleBackColor = true;
             btnEliminarCat.Click += btnEliminarCat_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider1.ContainerControl = this;
+            // 
             // frmCategoria
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -97,10 +102,10 @@
             Controls.Add(lblCategorias);
             Controls.Add(dgvCategoria);
             Name = "frmCategoria";
-        
-            Load += frmCategoria_Load;
             Text = "frmCategoria";
+            Load += frmCategoria_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCategoria).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -112,5 +117,6 @@
         private Button btnAgregarCat;
         private Button btnModificarCat;
         private Button btnEliminarCat;
+        private ErrorProvider errorProvider1;
     }
 }

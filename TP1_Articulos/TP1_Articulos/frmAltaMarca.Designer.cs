@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             txtAltaMarca = new TextBox();
             lblAltaMarca = new Label();
             btnAgregarMarca = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // txtAltaMarca
@@ -59,6 +62,11 @@
             btnAgregarMarca.UseVisualStyleBackColor = true;
             btnAgregarMarca.Click += btnAgregarMarca_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider1.ContainerControl = this;
+            // 
             // frmAltaMarca
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -69,6 +77,7 @@
             Controls.Add(txtAltaMarca);
             Name = "frmAltaMarca";
             Text = "frmAltaMarca";
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -78,5 +87,6 @@
         private TextBox txtAltaMarca;
         private Label lblAltaMarca;
         private Button btnAgregarMarca;
+        private ErrorProvider errorProvider1;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -47,6 +48,8 @@
             btnAgregarImagen = new Button();
             lstImagenes = new ListBox();
             btnQuitarImagen = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -213,6 +216,11 @@
             btnQuitarImagen.UseVisualStyleBackColor = true;
             btnQuitarImagen.Click += btnQuitarImagen_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider1.ContainerControl = this;
+            // 
             // frmAltaArticulo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -240,6 +248,7 @@
             Name = "frmAltaArticulo";
             Text = "frmAltaArticulo";
             Load += frmAltaArticulo_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -265,5 +274,6 @@
         private Button btnAgregarImagen;
         private ListBox lstImagenes;
         private Button btnQuitarImagen;
+        private ErrorProvider errorProvider1;
     }
 }

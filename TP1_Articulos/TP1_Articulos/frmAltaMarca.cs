@@ -33,6 +33,13 @@ namespace TP1_Articulos
             MarcaDatos negocioMarca = new MarcaDatos();
             try
             {
+                errorProvider1.Clear();
+                if(string.IsNullOrWhiteSpace(txtAltaMarca.Text) )
+                {
+                    errorProvider1.SetError(txtAltaMarca, "Debe ingresar una marca.");
+                    return;
+                }
+               
                 if (marca == null)
                 {
                     marca = new Marcas();

@@ -24,10 +24,13 @@ namespace TP1_Articulos
 
         private void btnSeleccionMenu_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
+
             if (cbMenuSeleccionado.SelectedItem == null)
             {
-                MessageBox.Show("Elegí una opción");
+                errorProvider1.SetError( cbMenuSeleccionado, "Elegí una opción");
                 return;
+               
             }
 
             switch (cbMenuSeleccionado.SelectedItem.ToString())

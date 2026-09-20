@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblSeleccion = new Label();
             cbMenuSeleccionado = new ComboBox();
             btnSeleccionMenu = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // lblSeleccion
@@ -61,6 +64,10 @@
             btnSeleccionMenu.UseVisualStyleBackColor = true;
             btnSeleccionMenu.Click += btnSeleccionMenu_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // frmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -72,6 +79,7 @@
             Name = "frmMenuPrincipal";
             Text = "frmMenuPrincipal";
             Load += frmMenuPrincipal_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -81,5 +89,6 @@
         private Label lblSeleccion;
         private ComboBox cbMenuSeleccionado;
         private Button btnSeleccionMenu;
+        private ErrorProvider errorProvider1;
     }
 }

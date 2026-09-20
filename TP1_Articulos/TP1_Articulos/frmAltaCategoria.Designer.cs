@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblAltaCat = new Label();
             txtAltaCat = new TextBox();
             btnAgregarCat = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // lblAltaCat
@@ -59,6 +62,11 @@
             btnAgregarCat.UseVisualStyleBackColor = true;
             btnAgregarCat.Click += btnAgregarCat_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider1.ContainerControl = this;
+            // 
             // frmAltaCategoria
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -70,6 +78,7 @@
             Name = "frmAltaCategoria";
             Text = "frmAltaCategoria";
             Load += frmAltaCategoria_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -79,5 +88,6 @@
         private Label lblAltaCat;
         private TextBox txtAltaCat;
         private Button btnAgregarCat;
+        private ErrorProvider errorProvider1;
     }
 }
