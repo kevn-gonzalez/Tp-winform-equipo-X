@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,34 +19,24 @@ namespace TP1_Articulos
 
         private void frmMenuPrincipal_Load(object sender, EventArgs e)
         {
-            cbMenuSeleccionado.Items.Add("Marca");
-            cbMenuSeleccionado.Items.Add("Categoría");
-            cbMenuSeleccionado.Items.Add("Artículos");
+
         }
 
-        private void btnSeleccionMenu_Click(object sender, EventArgs e)
+
+        private void btnArticulos_Click(object sender, EventArgs e)
         {
-            errorProvider1.Clear();
+            new Form1().ShowDialog();
 
-            if (cbMenuSeleccionado.SelectedItem == null)
-            {
-                errorProvider1.SetError( cbMenuSeleccionado, "Elegí una opción");
-                return;
-               
-            }
+        }
 
-            switch (cbMenuSeleccionado.SelectedItem.ToString())
-            {
-                case "Marca":
-                    new frmMarca().ShowDialog();
-                    break;
-                case "Categoría":
-                    new frmCategoria().ShowDialog();
-                    break;
-                case "Artículos":
-                    new Form1().ShowDialog();
-                    break;
-            }
+        private void btnCategorias_Click(object sender, EventArgs e)
+        {
+            new frmListadoGenerico(new CategoriaDatos()).ShowDialog(); 
+        }
+
+        private void btnMarcas_Click(object sender, EventArgs e)
+        {
+            new frmListadoGenerico(new MarcaDatos()).ShowDialog();
         }
     }
 }

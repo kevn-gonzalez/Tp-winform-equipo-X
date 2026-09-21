@@ -98,15 +98,15 @@ namespace TP1_Articulos
         }
 
 
-        private void cargarImagen(string imagen)
+        private  void cargarImagen(string imagen)
         {
             try
             {
-                pbxArticulos.Load(imagen);
+                 pbxArticulos.LoadAsync(imagen);
             }
             catch (Exception)
             {
-                pbxArticulos.Load("https://ih1.redbubble.net/image.1693090018.7934/pp,504x498-pad,600x600,f8f8f8.jpg");
+                pbxArticulos.LoadAsync("https://imgs.search.brave.com/bInLnvoN33pG-W4upTXrPPHjvb9xv_qN29l38jyQYuM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9paDEu/cmVkYnViYmxlLm5l/dC9pbWFnZS4yODQ1/Nzk3NzEuMTcyNS9n/YnJmLDd4NSxmLDU0/MHg1NDAtcGFkLDQ1/MHg0NTAsZjhmOGY4/LnU0LmpwZw");
             }
         }
 

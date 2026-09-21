@@ -6,9 +6,17 @@ using Dominio;
 
 namespace Negocio
 {
-    public class ArticuloDatos
+    public class ArticuloDatos : GenericoDatos
     {
-        public List<Articulos> Listar()
+        private const string tablaNombre = "ARTICULOS";
+        public ArticuloDatos( ) : base(tablaNombre)
+        {
+
+        }
+
+
+
+        public  List<Articulos> Listar()
         {
             List<Articulos> lista = new List<Articulos>();
 
@@ -53,10 +61,10 @@ namespace Negocio
                 datos.CerrarConexion();
                 return lista;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -78,9 +86,9 @@ namespace Negocio
 
                 return lista;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -116,9 +124,9 @@ namespace Negocio
                     datos.ejecutarAccion();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -136,10 +144,10 @@ namespace Negocio
                 datos.ejecutarAccion();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
         }
 
@@ -174,9 +182,9 @@ namespace Negocio
                     datos.ejecutarAccion();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {

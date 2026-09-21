@@ -47,7 +47,8 @@
             // 
             dgvPrincipal.BackgroundColor = SystemColors.ButtonHighlight;
             dgvPrincipal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPrincipal.Location = new Point(259, 12);
+            dgvPrincipal.GridColor = SystemColors.AppWorkspace;
+            dgvPrincipal.Location = new Point(241, 12);
             dgvPrincipal.Name = "dgvPrincipal";
             dgvPrincipal.Size = new Size(529, 328);
             dgvPrincipal.TabIndex = 0;
@@ -57,7 +58,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(22, 21);
+            btnAgregar.Location = new Point(243, 378);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(85, 23);
             btnAgregar.TabIndex = 1;
@@ -67,17 +68,18 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(22, 97);
+            btnEliminar.BackColor = SystemColors.ControlLight;
+            btnEliminar.Location = new Point(687, 378);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(85, 23);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
             // pbxArticulos
             // 
-            pbxArticulos.Location = new Point(22, 151);
+            pbxArticulos.Location = new Point(12, 12);
             pbxArticulos.Name = "pbxArticulos";
             pbxArticulos.Size = new Size(206, 189);
             pbxArticulos.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -87,17 +89,18 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(22, 59);
+            btnModificar.BackColor = SystemColors.ControlLight;
+            btnModificar.Location = new Point(468, 378);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(85, 23);
             btnModificar.TabIndex = 4;
             btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click;
             // 
             // btnAnteriorImagen
             // 
-            btnAnteriorImagen.Location = new Point(73, 360);
+            btnAnteriorImagen.Location = new Point(63, 207);
             btnAnteriorImagen.Name = "btnAnteriorImagen";
             btnAnteriorImagen.Size = new Size(34, 23);
             btnAnteriorImagen.TabIndex = 5;
@@ -107,7 +110,7 @@
             // 
             // btnSiguienteImagen
             // 
-            btnSiguienteImagen.Location = new Point(124, 360);
+            btnSiguienteImagen.Location = new Point(144, 207);
             btnSiguienteImagen.Name = "btnSiguienteImagen";
             btnSiguienteImagen.Size = new Size(34, 23);
             btnSiguienteImagen.TabIndex = 6;
@@ -118,9 +121,9 @@
             // cbBuscar
             // 
             cbBuscar.FormattingEnabled = true;
-            cbBuscar.Location = new Point(328, 352);
+            cbBuscar.Location = new Point(76, 253);
             cbBuscar.Name = "cbBuscar";
-            cbBuscar.Size = new Size(194, 23);
+            cbBuscar.Size = new Size(142, 23);
             cbBuscar.TabIndex = 7;
             cbBuscar.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             cbBuscar.TextChanged += CBBuscarpor_TextChanged;
@@ -128,7 +131,7 @@
             // labelFiltrar
             // 
             labelFiltrar.AutoSize = true;
-            labelFiltrar.Location = new Point(261, 355);
+            labelFiltrar.Location = new Point(12, 256);
             labelFiltrar.Name = "labelFiltrar";
             labelFiltrar.Size = new Size(61, 15);
             labelFiltrar.TabIndex = 8;
@@ -137,16 +140,16 @@
             // 
             // tbBuscar
             // 
-            tbBuscar.Location = new Point(328, 391);
+            tbBuscar.Location = new Point(63, 296);
             tbBuscar.Name = "tbBuscar";
-            tbBuscar.Size = new Size(286, 23);
+            tbBuscar.Size = new Size(158, 23);
             tbBuscar.TabIndex = 9;
             tbBuscar.TextChanged += tbBuscar_TextChanged;
             // 
             // labelBuscar
             // 
             labelBuscar.AutoSize = true;
-            labelBuscar.Location = new Point(261, 391);
+            labelBuscar.Location = new Point(12, 299);
             labelBuscar.Name = "labelBuscar";
             labelBuscar.Size = new Size(45, 15);
             labelBuscar.TabIndex = 10;
@@ -156,6 +159,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(800, 450);
             Controls.Add(labelBuscar);
             Controls.Add(tbBuscar);

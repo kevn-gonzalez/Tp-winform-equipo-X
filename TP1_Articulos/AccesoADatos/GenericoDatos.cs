@@ -4,32 +4,29 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 namespace Negocio
 {
-    public class CategoriaDatos : GenericoDatos
+    public class GenericoDatos
     {
-        private const string nombreTabla = "Categorias";
-        public CategoriaDatos() : base(nombreTabla)
-        {
+        protected string tablaNombre;
 
+        public GenericoDatos(string tablaNombre) {
+            this.tablaNombre = tablaNombre;
         }
 
-        public override string ToString()
-        {
-            return tablaNombre;
-        }
 
-        public List<Categorias> Listar()
+        public virtual List<EntidadBase> Listar()
         {
-            List<Categorias> lista = new List<Categorias>();
+            
+            List<EntidadBase> lista = new List<EntidadBase>();
             AccesoADatos datos = new AccesoADatos();
 
             try
             {
-                datos.setearConsulta("select Id, Descripcion from CATEGORIAS");
+                datos.setearConsulta("select Id, Descripcion from " + tablaNombre );
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Categorias aux = new Categorias();
+                    EntidadBase aux = new EntidadBase();
 
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
@@ -48,13 +45,12 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
-
-        public void agregar(string nuevo)
+        public virtual void agregar(string nuevo)
         {
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                datos.setearConsulta("Insert into CATEGORIAS (Descripcion) Values (@desc)");
+                datos.setearConsulta("Insert into " + tablaNombre + " (Descripcion) Values (@desc)");
                 datos.setearParametro("@desc", nuevo);
                 datos.ejecutarAccion();
             }
@@ -68,12 +64,12 @@ namespace Negocio
             }
         }
 
-        public void modificar(Categorias nuevo)
+        public virtual void modificar(EntidadBase nuevo)
         {
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                datos.setearConsulta("Update CATEGORIAS Set Descripcion = @desc Where Id = @id");
+                datos.setearConsulta("Update " + tablaNombre + " Set Descripcion = @desc Where Id = @id");
                 datos.setearParametro("@desc", nuevo.Descripcion);
                 datos.setearParametro("@id", nuevo.Id);
                 datos.ejecutarAccion();
@@ -88,12 +84,12 @@ namespace Negocio
             }
         }
 
-        public void eliminar(int id)
+        public virtual void eliminar(int id)
         {
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                datos.setearConsulta("Delete from CATEGORIAS Where Id = @id");
+                datos.setearConsulta("Delete from " + tablaNombre + " Where Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
             }
@@ -107,18 +103,19 @@ namespace Negocio
             }
         }
 
-        public void eliminarLogico(int id)
+        public virtual void eliminarLogico(int id)
         {
             AccesoADatos datos = new AccesoADatos();
             try
             {
-                datos.setearConsulta("update CATEGORIAS set Activo = 0 where Id = @id");
+                datos.setearConsulta("update " + tablaNombre + " set Activo = 0  where Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
             }
             catch (Exception)
             {
                 throw;
+
             }
             finally
             {

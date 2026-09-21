@@ -4,15 +4,14 @@ using System.Collections.Generic;
 
 namespace Dominio
 {
-    public class Articulos
+    public class Articulos : EntidadBase
     {
 
-            public int Id { get; set; }
+            
             [DisplayName("Cod. de artículo")]
             public string Codigo { get; set; }
             public string Nombre { get; set; }
-            [DisplayName("Descripción")]
-            public string Descripcion { get; set; }
+      
             public decimal Precio { get; set; }
             public string ImagenUrl { get; set; }
             [DisplayName("Marca")]
@@ -21,6 +20,6 @@ namespace Dominio
             [DisplayName("Categoria")]
             public Categorias IdCategoria { get; set; } = new Categorias();
         
-
+            
     }
 }

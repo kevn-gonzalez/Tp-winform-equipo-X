@@ -21,7 +21,7 @@ namespace Negocio
         public AccesoADatos()
         {
             //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P4_DB; integrated security=true; TrustServerCertificate=True");
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true; TrustServerCertificate=True");
+            conexion = new SqlConnection("Server=localhost,1433;User Id=sa;Password=Pirulo123;Database=CATALOGO_P3_DB;TrustServerCertificate=True;");
             comando = new SqlCommand();
         }
 
@@ -40,9 +40,9 @@ namespace Negocio
                 conexion.Open();
                 lector = comando.ExecuteReader();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -58,9 +58,9 @@ namespace Negocio
 
                 comando.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -81,9 +81,9 @@ namespace Negocio
 
                 return Convert.ToInt32(comando.ExecuteScalar());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
