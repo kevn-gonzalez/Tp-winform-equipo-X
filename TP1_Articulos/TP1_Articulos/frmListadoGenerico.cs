@@ -105,9 +105,12 @@ namespace TP1_Articulos
             }
         }
 
-        private void dgvElementos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvElementos_MouseClick(object sender, MouseEventArgs e)
         {
 
+            EntidadBase seleccionado;
+            seleccionado = (EntidadBase)dgvElementos.CurrentRow.DataBoundItem;
+            txtElemento.Text = seleccionado.ToString();
         }
     }
 }

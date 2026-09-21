@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="AccesoADatos/Negocio.csproj" />
+  <Project Path="Dominio/Dominio.csproj" />
+  <Project Path="TP1_Articulos/TP1_Articulos.csproj" />
+</Solution>

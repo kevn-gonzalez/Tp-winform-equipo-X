@@ -49,7 +49,9 @@
             dgvPrincipal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPrincipal.GridColor = SystemColors.AppWorkspace;
             dgvPrincipal.Location = new Point(241, 12);
+            dgvPrincipal.MultiSelect = false;
             dgvPrincipal.Name = "dgvPrincipal";
+            dgvPrincipal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrincipal.Size = new Size(529, 328);
             dgvPrincipal.TabIndex = 0;
             dgvPrincipal.CellContentClick += dgvPrincipal_CellContentClick;

@@ -46,9 +46,10 @@
             dgvElementos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvElementos.Location = new Point(57, 62);
             dgvElementos.Name = "dgvElementos";
+            dgvElementos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvElementos.Size = new Size(275, 259);
             dgvElementos.TabIndex = 0;
-            dgvElementos.CellMouseClick += dgvElementos_CellMouseClick;
+            dgvElementos.MouseClick += dgvElementos_MouseClick;
             // 
             // lblElemento
             // 
